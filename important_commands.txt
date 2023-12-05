@@ -7,6 +7,10 @@ php artisan migrate
 php artisan make:migration create_flights_table
 php artisan make:migration create_news_posts_table
 
+//Models
+php artisan make:model NewsCategory
+php artisan make:model NewsPost
+
 
 
 TABLES
