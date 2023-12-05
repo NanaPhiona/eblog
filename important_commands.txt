@@ -1,0 +1,22 @@
+php artisan make:controller NewsPostController
+
+Migration command
+php artisan migrate
+
+//Creating TABLES
+php artisan make:migration create_flights_table
+php artisan make:migration create_news_posts_table
+
+
+
+TABLES
+- News Categories
+- Post
+- Comments
+
+TIPS
+- Make use of plurals for table names
+- Use lowercase
+- Use snake case
+
+
