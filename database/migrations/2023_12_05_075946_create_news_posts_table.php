@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text('title');
+            $table->longText('body');
             $table->text('photo')->nullable();
             $table->integer('views')->default(0)->nullable();
             $table->integer('user_id')->default(1);
