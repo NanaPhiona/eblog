@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-
+//Public routes
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('about_us', [MainController::class, 'about_us'])->name('about');
 Route::post('register', [MainController::class, 'register'])->name('register');
@@ -19,12 +20,19 @@ Route::get('login', function(){
 
 
 Route::post('login', [MainController::class, 'login'])->name('login');
-
 Route::get('logout', function(){
     AUth::logout();
     return redirect()->intended('/');
     die('Logout');
 })->name('logout');
+
+
+//Admin routes
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('categories', [DashboardController::class, 'categories'])->name('categories');
+Route::get('categories/create_categories', [DashboardController::class, 'create_categories'])->name('create_categories');
+Route::post('categories/create_categories', [DashboardController::class, 'categories_store'])->name('create_categories');
+
 
 
 Route::get('contact_us', [MainController::class, 'contact_us'])->name('contact');

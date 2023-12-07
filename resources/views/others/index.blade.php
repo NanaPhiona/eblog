@@ -3,7 +3,7 @@
 @section('title')
     Home Page
 @endsection
-@section('content')
+{{-- @section('content')
     <h4>Home Content</h4>
     @for ($i = 0; $i < 10; $i++)
     @include(
@@ -17,4 +17,4 @@
 
 
 
-
+ --}}

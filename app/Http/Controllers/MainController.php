@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\NewsPost;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
 {
@@ -235,19 +236,31 @@ class MainController extends Controller
         }
 
 
-        $credentials = [
-            'email' => $r->login_name,
-            'password' => $r->login_password,
-        ];
-
-        if(Auth::attempt($credentials)){
+        $user = User::where('email', '=', $r->login_email)->first();
+        if($user && Hash::check($r->login_password, $user->password)){
             return redirect()->intended('dashboard');
         }else{
             return Redirect::back()
-            ->withErrors(['login_password' => ['Wrong password.'], 'login_email'=> ['Email and password do not match']])
+            ->withErrors([
+            'login_password' => ['Wrong password.'],
+            'login_email' => ['Email and Password do not match']
+            ])
             ->withInput();
-
         }
+
+        // $credentials = [
+        //     'email' => $r->login_name,
+        //     'password' => $r->login_password,
+        // ];
+
+        // if(Auth::attempt($credentials)){
+        //     return redirect()->intended('dashboard');
+        // }else{
+        //     return Redirect::back()
+        //     ->withErrors(['login_password' => ['Wrong password.'], 'login_email'=> ['Email and password do not match']])
+        //     ->withInput();
+
+        //}
 
     }
 
